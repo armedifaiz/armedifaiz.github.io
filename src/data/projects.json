@@ -48,18 +48,6 @@
     "thumbnail": null
   },
   {
-    "id": "introduction-to-github",
-    "name": "introduction-to-github",
-    "description": "Get started using GitHub in less than an hour.",
-    "githubUrl": "https://github.com/armedifaiz/introduction-to-github",
-    "demoUrl": "",
-    "language": null,
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-07-03T13:48:26Z",
-    "thumbnail": null
-  },
-  {
     "id": "icon-picker",
     "name": "icon-picker",
     "description": "",

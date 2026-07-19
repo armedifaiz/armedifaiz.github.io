@@ -21,7 +21,7 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
         />
       </div>
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-card-bg/90 pb-2 pt-4 opacity-0 transition-opacity group-hover:opacity-100">
-        <span className="rounded-lg border border-accent px-3 py-1 text-xs text-accent">
+        <span className="rounded-lg border border-[#ef4444] px-3 py-1 text-xs text-[#ef4444]">
           Verify
         </span>
       </div>

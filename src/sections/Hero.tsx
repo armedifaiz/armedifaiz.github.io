@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRandomPhoto } from '../hooks/useRandomPhoto'
 import Button from '../components/common/Button'
 import { hero } from '../data/site'
@@ -15,29 +15,17 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="order-2 aspect-[4/5] w-full overflow-hidden rounded-xl2 bg-base-800 md:order-1"
         >
-          <AnimatePresence mode="wait">
-            {photo ? (
-              <motion.img
-                key={photo.imageUrl}
-                src={photo.imageUrl}
-                alt="Foto profil"
-                initial={{ opacity: 0, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, filter: 'blur(10px)' }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full w-full object-cover grayscale contrast-125"
-              />
-            ) : (
-              <motion.div
-                key="empty"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex h-full w-full items-center justify-center text-sm text-white/30"
-              >
-                Add photo via scripts/drive_api.py
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {photo ? (
+            <img
+              src={photo.imageUrl}
+              alt="Foto profil"
+              className="h-full w-full object-cover grayscale contrast-125"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm text-white/30">
+              Add photo via scripts/drive_api.py
+            </div>
+          )}
         </motion.div>
 
         <motion.div

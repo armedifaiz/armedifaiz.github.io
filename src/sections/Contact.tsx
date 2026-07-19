@@ -4,8 +4,6 @@ import FadeIn from '../components/ui/FadeIn'
 import socials from '../data/socials.json'
 import { contact } from '../data/site'
 
-const closeHtml = `<span class="inline-block rounded bg-white px-1.5 py-0.5 text-sm leading-none text-black">${contact.closeLabel}</span>`
-
 interface Social {
   platform: string
   url: string
@@ -30,7 +28,6 @@ export default function Contact() {
           title={contact.title}
           description={contact.description}
         />
-        <p className="-mt-8 mb-12 text-base text-white/60" dangerouslySetInnerHTML={{ __html: closeHtml }} />
         <FadeIn className="glass flex flex-col items-start gap-6 rounded-xl2 p-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-4">
             {list.map((social) => (

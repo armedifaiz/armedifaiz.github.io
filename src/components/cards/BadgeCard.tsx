@@ -22,9 +22,9 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
           className="max-h-full max-w-full object-contain transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
           loading="lazy"
         />
-        {/* Overlay + Verify button centered */}
+        {/* Overlay text centered */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="rounded-full bg-[#ef4444] px-4 py-1.5 text-xs font-medium text-white shadow-md shadow-[#ef4444]/30 transition-transform hover:scale-105">
+          <span className="text-sm font-semibold text-white drop-shadow-lg">
             Verify
           </span>
         </div>

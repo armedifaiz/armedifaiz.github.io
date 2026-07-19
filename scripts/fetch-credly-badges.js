@@ -82,7 +82,7 @@ function normalizeBadge(raw, sourceLabel) {
     issue_date: raw.issued_at_date || '',
     expiration_date: raw.expires_at_date || null,
     image_url: template.image_url || raw.image_url || '',
-    badge_url: template.url || '',
+    badge_url: `https://www.credly.com/badges/${raw.id}`, // unique badge instance URL
     skills,
     state: raw.state || 'unknown',
     verified: raw.state === 'accepted',

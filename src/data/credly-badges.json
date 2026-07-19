@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-19T16:08:37.394Z",
+  "fetched_at": "2026-07-19T18:22:02.218Z",
   "total": 14,
   "badges": [
     {
@@ -12,7 +12,7 @@
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/9a9bd5ca-b41b-41ed-82ad-43968d960f62/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/accelerate-development-with-antigravity",
+      "badge_url": "https://www.credly.com/badges/04a52dfe-d3bd-4d1d-853d-459c37f7039a",
       "skills": [
         "Agent development",
         "Application Development",
@@ -32,7 +32,7 @@
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/e9c45e2a-a48e-4686-99df-7de0ccd6dae7/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/deploy-an-agent-with-agent-development-kit-adk",
+      "badge_url": "https://www.credly.com/badges/4a01b485-fc81-464a-8f9c-3698931cef34",
       "skills": [
         "AI Agents",
         "Agent Development Kit",
@@ -51,7 +51,7 @@
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/b1800059-b7de-4065-851d-678287ea0720/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/evaluate-and-improve-agent-development-kit-agents",
+      "badge_url": "https://www.credly.com/badges/db061b9a-4f3d-4a85-8e76-5123f9dd6490",
       "skills": [
         "Agent Evaluation",
         "Evaluation Strategy",
@@ -70,7 +70,7 @@
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/c386f11b-05fd-4755-b091-611d9bb96113/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/add-agents-to-gemini-enterprise",
+      "badge_url": "https://www.credly.com/badges/673149bb-fddc-4be4-9f1a-ccac2b35bb07",
       "skills": [
         "ADK",
         "AI Agents",
@@ -89,7 +89,7 @@
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/d82b7124-5d8a-4bb9-a3c0-7220e172f948/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/deploy-gemini-enterprise-with-workspace-data-source",
+      "badge_url": "https://www.credly.com/badges/aaa19bd7-85d1-455a-b83d-6443ae9fc8aa",
       "skills": [
         "Dealing With Ambiguity",
         "Google Workspace",
@@ -110,7 +110,7 @@
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/39c0ab96-e088-4d83-baaf-395633aa1810/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/govern-agent-access-with-gemini-enterprise-agent-pl",
+      "badge_url": "https://www.credly.com/badges/22eba323-93dd-4ec6-bde3-2621483538f0",
       "skills": [
         "Agent Gateaway",
         "Agent governance",
@@ -129,7 +129,7 @@
       "issue_date": "2026-05-30",
       "expiration_date": "2029-05-30",
       "image_url": "https://images.credly.com/images/3e3f6d8b-b37e-4a3d-93d0-6f2bafa5f03c/blob",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/associate-data-practitioner-certification",
+      "badge_url": "https://www.credly.com/badges/584fcd93-233d-4982-9f8e-b5b9667f3b04",
       "skills": [
         "Analytical Skills",
         "BigQuery",
@@ -159,7 +159,7 @@
       "issue_date": "2026-04-09",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/f1dbea96-0ef4-4857-bb85-3d208a82de10/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/implement-cloud-security-fundamentals-on-google-clo",
+      "badge_url": "https://www.credly.com/badges/8c82f988-28fa-491e-86b9-f97bdc9e8700",
       "skills": [
         "App Deployment",
         "Authentication",
@@ -185,7 +185,7 @@
       "issue_date": "2026-04-08",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/17bffe41-23fb-4004-a5c3-ea46b6c6ed76/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/analyze-and-visualize-looker-data-skill-badge",
+      "badge_url": "https://www.credly.com/badges/8c70090b-e422-471e-bee5-ed8a2cc489a5",
       "skills": [
         "Dashboard",
         "Data Analysis",
@@ -206,7 +206,7 @@
       "issue_date": "2026-04-07",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/11088b22-7be5-4fe3-995d-c014514c8dc3/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/derive-insights-from-bigquery-data-skill-badge",
+      "badge_url": "https://www.credly.com/badges/eed77211-c8f6-4646-9ccc-9f210804d992",
       "skills": [
         "BigQuery",
         "Business Intelligence",
@@ -229,7 +229,7 @@
       "issue_date": "2025-11-11",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/c4acff27-5baa-452f-a6b2-ab875da12dfd/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/build-a-data-mesh-with-dataplex-skill-badge",
+      "badge_url": "https://www.credly.com/badges/b5ffd32e-3d05-4b28-8bfd-a1b2fcc661a7",
       "skills": [
         "Data Governance",
         "Data Mesh",
@@ -249,7 +249,7 @@
       "issue_date": "2025-11-11",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/6160e2c1-4a95-4f47-8c5b-f2dde7bb6a67/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/engineer-data-for-predictive-modeling-with-bigquery",
+      "badge_url": "https://www.credly.com/badges/072bf3b9-7a8c-479a-9001-0b27dd82fca4",
       "skills": [
         "BigQuery",
         "BigQuery ML",
@@ -275,7 +275,7 @@
       "issue_date": "2025-11-10",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/8ab21779-042f-4616-a6ab-fd0d62648b24/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/build-a-data-warehouse-with-bigquery-skill-badge",
+      "badge_url": "https://www.credly.com/badges/aab7ae70-bc38-4ee4-b9f4-1c819799c0fc",
       "skills": [
         "BigQuery",
         "Data Ingestion",
@@ -295,7 +295,7 @@
       "issue_date": "2025-11-08",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/68756311-9319-4eeb-a2b7-76defc8dd8a2/image.png",
-      "badge_url": "https://www.credly.com/org/google-cloud/badge/prepare-data-for-ml-apis-on-google-cloud-skill-badg",
+      "badge_url": "https://www.credly.com/badges/97a00166-ec91-400e-b106-f53a631b84e7",
       "skills": [
         "Cloud Natural Language API",
         "Data Pipeline",

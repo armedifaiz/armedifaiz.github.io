@@ -19,7 +19,8 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
     <motion.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="flex h-full flex-col overflow-hidden rounded-xl2 border border-white/10 bg-white"
+      className="flex h-full flex-col overflow-hidden rounded-xl2 border border-gray-200"
+      style={{ backgroundColor: '#FFFFFF' }}
     >
       {/* Badge image */}
       <div className="flex aspect-square items-center justify-center bg-white p-6">

@@ -5,6 +5,7 @@ import About from './sections/About'
 import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import Certificates from './sections/Certificates'
+import Badges from './sections/Badges'
 import Contact from './sections/Contact'
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Skills />
         <Projects />
         <Certificates />
+        <Badges />
         <Contact />
       </main>
       <Footer />

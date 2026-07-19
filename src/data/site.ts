@@ -9,6 +9,7 @@ export const nav = {
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
     { label: 'Certificates', href: '#certificates' },
+    { label: 'Badges', href: '#badges' },
     { label: 'Contact', href: '#contact' },
   ],
 }
@@ -43,6 +44,12 @@ export const projects = {
 export const certificates = {
   eyebrow: 'Certificates',
   title: 'Certifications and Achievements',
+}
+
+export const badges = {
+  eyebrow: 'Badges',
+  title: 'Credly Badges',
+  description: 'Digital credentials from Google Cloud and other platforms.',
 }
 
 export const contact = {

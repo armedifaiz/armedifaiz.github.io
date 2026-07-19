@@ -17,12 +17,12 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
+      whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="flex h-full flex-col overflow-hidden rounded-xl2 border border-card-border bg-card-bg"
+      className="flex w-48 shrink-0 flex-col overflow-hidden rounded-xl2 border border-card-border bg-card-bg"
     >
-      {/* Badge image */}
-      <div className="flex aspect-square items-center justify-center bg-card-bg p-6">
+      {/* Badge image - minimal padding */}
+      <div className="flex aspect-square items-center justify-center bg-card-bg p-4">
         <img
           src={badge.image_url}
           alt={badge.name}
@@ -31,46 +31,42 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
         />
       </div>
 
-      {/* Info */}
-      <div className="flex flex-1 flex-col gap-2 border-t border-card-border bg-card-bg p-4">
-        <p className="line-clamp-2 text-sm font-medium leading-snug text-gray-900">{badge.name}</p>
+      {/* Info - minimal padding */}
+      <div className="flex flex-1 flex-col gap-1.5 border-t border-card-border bg-card-bg p-3">
+        <p className="line-clamp-2 text-xs font-medium leading-snug text-gray-900">{badge.name}</p>
 
         {badge.issuer && (
-          <p className="text-xs text-gray-500">{badge.issuer}</p>
-        )}
-
-        {badge.source && badge.source !== badge.issuer && (
-          <p className="text-[11px] text-gray-400">via {badge.source}</p>
+          <p className="text-[11px] text-gray-500">{badge.issuer}</p>
         )}
 
         {issueDate && (
-          <p className="text-[11px] text-gray-400">Issued {issueDate}</p>
+          <p className="text-[10px] text-gray-400">Issued {issueDate}</p>
         )}
 
         {badge.skills.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-1.5">
-            {badge.skills.slice(0, 4).map((skill) => (
+          <div className="flex flex-wrap gap-1">
+            {badge.skills.slice(0, 3).map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-gray-300 px-2 py-0.5 text-[10px] text-gray-500"
+                className="rounded-full border border-gray-300 px-1.5 py-0.5 text-[9px] text-gray-500"
               >
                 {skill}
               </span>
             ))}
-            {badge.skills.length > 4 && (
-              <span className="text-[10px] text-gray-400">+{badge.skills.length - 4}</span>
+            {badge.skills.length > 3 && (
+              <span className="text-[9px] text-gray-400">+{badge.skills.length - 3}</span>
             )}
           </div>
         )}
 
-        <div className="mt-auto pt-2">
+        <div className="pt-1">
           <a
             href={badge.badge_url}
             target="_blank"
             rel="noreferrer"
-            className="inline-block rounded-lg border border-accent/30 px-3 py-1.5 text-xs text-accent transition-colors hover:bg-accent/10"
+            className="inline-block rounded-lg border border-accent px-2.5 py-1 text-[11px] text-accent transition-colors hover:bg-accent hover:text-white"
           >
-            Verify Credential
+            Verify
           </a>
         </div>
       </div>

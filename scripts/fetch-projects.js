@@ -15,7 +15,7 @@
  *   GITHUB_TOKEN     – optional GitHub PAT for higher rate limit
  */
 
-import { mkdirSync, writeFile } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
 import { dirname } from 'path';
 
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || 'armedifaiz';
@@ -97,7 +97,7 @@ async function main() {
 
 function writeFileSyncWithDir(path, data) {
   mkdirSync(dirname(path), { recursive: true });
-  writeFile(path, data, 'utf-8');
+  writeFileSync(path, data, 'utf-8');
 }
 
 main().catch((err) => {

@@ -5,14 +5,17 @@ interface BadgeCardProps {
 }
 
 export default function BadgeCard({ badge }: BadgeCardProps) {
+  const isCert = badge.badge_url?.includes('certification') ?? false
+  const rounded = isCert ? 'rounded-full' : 'rounded-xl2'
+
   return (
     <a
       href={badge.badge_url}
       target="_blank"
       rel="noreferrer"
-      className="group relative flex w-40 shrink-0 flex-col overflow-hidden rounded-xl2 border border-card-border bg-card-bg transition-shadow hover:shadow-lg"
+      className={`group relative flex w-40 shrink-0 flex-col overflow-hidden border border-card-border bg-card-bg transition-shadow hover:shadow-lg ${rounded}`}
     >
-      <div className="flex aspect-square items-center justify-center bg-card-bg p-5">
+      <div className={`flex aspect-square items-center justify-center bg-card-bg p-5 ${rounded}`}>
         <img
           src={badge.image_url}
           alt={badge.name}

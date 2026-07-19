@@ -33,18 +33,18 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
 
       {/* Info */}
       <div className="flex flex-1 flex-col gap-2 border-t border-card-border bg-card-bg p-4">
-        <p className="line-clamp-2 text-sm font-medium leading-snug text-base-950">{badge.name}</p>
+        <p className="line-clamp-2 text-sm font-medium leading-snug text-gray-900">{badge.name}</p>
 
         {badge.issuer && (
-          <p className="text-xs text-base-500">{badge.issuer}</p>
+          <p className="text-xs text-gray-500">{badge.issuer}</p>
         )}
 
         {badge.source && badge.source !== badge.issuer && (
-          <p className="text-[11px] text-base-400">via {badge.source}</p>
+          <p className="text-[11px] text-gray-400">via {badge.source}</p>
         )}
 
         {issueDate && (
-          <p className="text-[11px] text-base-400">Issued {issueDate}</p>
+          <p className="text-[11px] text-gray-400">Issued {issueDate}</p>
         )}
 
         {badge.skills.length > 0 && (
@@ -52,13 +52,13 @@ export default function BadgeCard({ badge }: BadgeCardProps) {
             {badge.skills.slice(0, 4).map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-base-300 px-2 py-0.5 text-[10px] text-base-500"
+                className="rounded-full border border-gray-300 px-2 py-0.5 text-[10px] text-gray-500"
               >
                 {skill}
               </span>
             ))}
             {badge.skills.length > 4 && (
-              <span className="text-[10px] text-base-400">+{badge.skills.length - 4}</span>
+              <span className="text-[10px] text-gray-400">+{badge.skills.length - 4}</span>
             )}
           </div>
         )}

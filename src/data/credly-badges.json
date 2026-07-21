@@ -1,18 +1,18 @@
 {
-  "fetched_at": "2026-07-19T18:22:02.218Z",
-  "total": 14,
+  "fetched_at": "2026-07-21T15:00:24.792Z",
+  "total": 16,
   "badges": [
     {
-      "id": "04a52dfe-d3bd-4d1d-853d-459c37f7039a",
+      "id": "944a1b92-71e0-488f-b4a7-d5e563d8275e",
       "name": "Accelerate Development with Antigravity",
       "description": "Complete the Accelerate Development with Antigravity skill badge to demonstrate your proficiency in using the Antigravity IDE for developing agentic workflows. You will be tasked with configuring an MCP server, authoring custom agent skills and rules, prototyping with the Agents CLI, and deploying to the Google Cloud Agent Runtime.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Intermediate",
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/9a9bd5ca-b41b-41ed-82ad-43968d960f62/blob",
-      "badge_url": "https://www.credly.com/badges/04a52dfe-d3bd-4d1d-853d-459c37f7039a",
+      "badge_url": "https://www.credly.com/badges/944a1b92-71e0-488f-b4a7-d5e563d8275e",
       "skills": [
         "Agent development",
         "Application Development",
@@ -23,16 +23,36 @@
       "verified": true
     },
     {
-      "id": "4a01b485-fc81-464a-8f9c-3698931cef34",
+      "id": "8d46f475-502f-4bf1-9830-1f4af144d6fd",
+      "name": "Certified Partner Specialist Gemini Enterprise Agent Development",
+      "description": "The Certified Partner Specialist: Gemini Enterprise Agent Development certification demonstrates a specialty in working with coding agents using agent-specific skills, building agents using Agent Development Kit (ADK), enhancing their capabilities with protocols like MCP and A2A, engineering sessions and memory, and governing agentic ecosystems.",
+      "issuer": "Google Cloud",
+      "source": "Google Cloud",
+      "level": "Advanced",
+      "issue_date": "2026-07-19",
+      "expiration_date": "2027-01-19",
+      "image_url": "https://images.credly.com/images/73e93208-0df3-435d-b58c-07c8ee6019d9/blob",
+      "badge_url": "https://www.credly.com/badges/8d46f475-502f-4bf1-9830-1f4af144d6fd",
+      "skills": [
+        "Agent Development Kit",
+        "Agents",
+        "Gemini Enterprise",
+        "Memory Management"
+      ],
+      "state": "accepted",
+      "verified": true
+    },
+    {
+      "id": "f86d1938-1449-4df2-8155-42c2b1b61eaf",
       "name": "Deploy an Agent with Agent Development Kit (ADK)",
       "description": "Complete the Deploy an Agent with Agent Development Kit (ADK) skill badge to demonstrate your ability to author agents using Agent Development Kit (ADK), deploy those agents to Agent Engine, and call the hosted agent from a web app.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Advanced",
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/e9c45e2a-a48e-4686-99df-7de0ccd6dae7/blob",
-      "badge_url": "https://www.credly.com/badges/4a01b485-fc81-464a-8f9c-3698931cef34",
+      "badge_url": "https://www.credly.com/badges/f86d1938-1449-4df2-8155-42c2b1b61eaf",
       "skills": [
         "AI Agents",
         "Agent Development Kit",
@@ -42,16 +62,16 @@
       "verified": true
     },
     {
-      "id": "db061b9a-4f3d-4a85-8e76-5123f9dd6490",
+      "id": "72816f15-9de2-4cc8-972b-c7cabeb74dff",
       "name": "Evaluate and Improve Agent Development Kit Agents",
       "description": "Complete the Evaluate and Improve Agent Development Kit Agents skill badge to demonstrate your ability to use ADK's evaluation tools to \"hill climb\", making measurable, iterative improvements to an agent. You will run an initial evaluation to establish a baseline, apply optimization techniques, and re-evaluate the agent to measure your success.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Advanced",
       "issue_date": "2026-07-19",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/b1800059-b7de-4065-851d-678287ea0720/blob",
-      "badge_url": "https://www.credly.com/badges/db061b9a-4f3d-4a85-8e76-5123f9dd6490",
+      "badge_url": "https://www.credly.com/badges/72816f15-9de2-4cc8-972b-c7cabeb74dff",
       "skills": [
         "Agent Evaluation",
         "Evaluation Strategy",
@@ -61,16 +81,16 @@
       "verified": true
     },
     {
-      "id": "673149bb-fddc-4be4-9f1a-ccac2b35bb07",
+      "id": "88ba60bd-d3d2-4bc6-a629-d71b5a27bc13",
       "name": "Add Agents to Gemini Enterprise",
       "description": "Complete the Add Agents to Gemini Enterprise skill badge to demonstrate your ability to add agents to a Gemini Enterprise app. You will build an agent with Agent Designer. And you will build a no-code agent with Agent Development Kit, deploy it to Agent Engine, and add it to the Gemini Enterprise app.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Advanced",
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/c386f11b-05fd-4755-b091-611d9bb96113/blob",
-      "badge_url": "https://www.credly.com/badges/673149bb-fddc-4be4-9f1a-ccac2b35bb07",
+      "badge_url": "https://www.credly.com/badges/88ba60bd-d3d2-4bc6-a629-d71b5a27bc13",
       "skills": [
         "ADK",
         "AI Agents",
@@ -80,16 +100,36 @@
       "verified": true
     },
     {
-      "id": "aaa19bd7-85d1-455a-b83d-6443ae9fc8aa",
+      "id": "d513c803-f430-45e4-aa7c-76055caef56f",
+      "name": "Certified Partner Specialist Gemini Enterprise Deployment",
+      "description": "The Certified Partner Specialist: Gemini Enterprise Deployment certification demonstrates a specialty in preparing for and delivering Gemini Enterprise deployments, including configuring identity providers, data stores & connectors, integrating existing agents, developing no-code agents, and securing the application.",
+      "issuer": "Google Cloud",
+      "source": "Google Cloud",
+      "level": "Advanced",
+      "issue_date": "2026-07-18",
+      "expiration_date": "2027-01-18",
+      "image_url": "https://images.credly.com/images/f874c419-9e95-4db2-85f9-4e45b89833f5/blob",
+      "badge_url": "https://www.credly.com/badges/d513c803-f430-45e4-aa7c-76055caef56f",
+      "skills": [
+        "Agent development",
+        "Agents",
+        "Gemini Enterprise",
+        "Software Development"
+      ],
+      "state": "accepted",
+      "verified": true
+    },
+    {
+      "id": "eba4e2e6-e666-483d-a892-f1bffee4fc7a",
       "name": "Deploy Gemini Enterprise with Workspace Data Sources and Model Armor",
       "description": "Complete the Deploy Gemini Enterprise with Workspace Data Sources and Model Armor skill badge to demonstrate your proficiency in deploying a secure Gemini Enterprise environment for Cymbal Bank. You will ground Gemini in web search and internal Workspace sources to ensure accurate, contextual responses.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Intermediate",
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/d82b7124-5d8a-4bb9-a3c0-7220e172f948/blob",
-      "badge_url": "https://www.credly.com/badges/aaa19bd7-85d1-455a-b83d-6443ae9fc8aa",
+      "badge_url": "https://www.credly.com/badges/eba4e2e6-e666-483d-a892-f1bffee4fc7a",
       "skills": [
         "Dealing With Ambiguity",
         "Google Workspace",
@@ -101,16 +141,16 @@
       "verified": true
     },
     {
-      "id": "22eba323-93dd-4ec6-bde3-2621483538f0",
+      "id": "9ecb9566-77ba-40f4-911b-c218b8f8ad74",
       "name": "Govern Agent Access with Gemini Enterprise Agent Platform",
       "description": "Complete the Govern Agent Access with Gemini Enterprise Agent Platform skill badge to demonstrate your ability to set up the ADK environment and prepare the pre-written BigQuery agent code for deployment, deploy the BigQuery agent to Agent Runtime and assign it a dedicated SPIFFE Agent Identity. Identify access failures in the Playground and grant granular IAM roles to the agent identity and validate the agent by executing natural language data queries against BigQuery in the Playground.",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Advanced",
       "issue_date": "2026-07-18",
       "expiration_date": null,
       "image_url": "https://images.credly.com/images/39c0ab96-e088-4d83-baaf-395633aa1810/blob",
-      "badge_url": "https://www.credly.com/badges/22eba323-93dd-4ec6-bde3-2621483538f0",
+      "badge_url": "https://www.credly.com/badges/9ecb9566-77ba-40f4-911b-c218b8f8ad74",
       "skills": [
         "Agent Gateaway",
         "Agent governance",
@@ -120,16 +160,16 @@
       "verified": true
     },
     {
-      "id": "584fcd93-233d-4982-9f8e-b5b9667f3b04",
+      "id": "64e60ccb-0cf8-4e26-87cc-053f72950dd7",
       "name": "Associate Data Practitioner Certification",
       "description": "The Associate Data Practitioner secures and manages data on Google Cloud. This individual has experience using Google Cloud data services for tasks like data ingestion, transformation, pipeline management, analysis, machine learning, and visualization. Candidates have a basic understanding of cloud computing concepts like infrastructure as a service (IaaS), platform as a service (PaaS), and software as a service (SaaS).",
       "issuer": "Google Cloud",
-      "source": "Google for Developers",
+      "source": "Google Cloud",
       "level": "Intermediate",
       "issue_date": "2026-05-30",
       "expiration_date": "2029-05-30",
       "image_url": "https://images.credly.com/images/3e3f6d8b-b37e-4a3d-93d0-6f2bafa5f03c/blob",
-      "badge_url": "https://www.credly.com/badges/584fcd93-233d-4982-9f8e-b5b9667f3b04",
+      "badge_url": "https://www.credly.com/badges/64e60ccb-0cf8-4e26-87cc-053f72950dd7",
       "skills": [
         "Analytical Skills",
         "BigQuery",

@@ -22,7 +22,6 @@ import { fileURLToPath } from 'url';
 const BASE_URL = 'https://www.credly.com';
 const DEFAULT_USERS = [
   { username: 'faiz-armedi', label: 'Google Cloud' },
-  { username: 'faiz-armedi.5a800b60', label: 'Google for Developers' },
 ];
 const OUTPUT_PATH = process.env.CREDLY_OUTPUT || 'src/data/credly-badges.json';
 

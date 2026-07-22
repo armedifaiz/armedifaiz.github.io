@@ -1,6 +1,6 @@
 export const site = {
   title: 'Faiz Armedi - Portfolio',
-  description: 'Faiz Armedi - Software & Data Engineer Portfolio',
+  description: 'Faiz Armedi - Portfolio',
 }
 
 export const nav = {
@@ -19,7 +19,7 @@ export const hero = {
   name: 'Saya Faiz',
   role: 'Based in Indonesia',
   tagline:
-    'A data engineer who works alongside AI. They are quick to create features; I am quick to make "fix fix fix" commits.',
+    'A ("Atom yang Kecil" - Raim Laode) who works alongside AI. They are quick to create features; I am quick to make "fix fix fix" commits.',
   primaryCta: 'Contact Me',
   secondaryCta: 'View Projects',
 }
@@ -32,7 +32,7 @@ export const about = {
 
 export const skills = {
   eyebrow: 'Skills',
-  title: 'Tools and Technologies I Use',
+  title: 'Tools and Technologies I Pecut',
 }
 
 export const projects = {
@@ -60,5 +60,5 @@ export const contact = {
 }
 
 export const footer = {
-  credit: 'Built with my AI agent named Luvium.',
+  credit: 'Built with my AI agent named Luvi.',
 }

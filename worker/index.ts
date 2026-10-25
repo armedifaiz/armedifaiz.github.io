@@ -16,9 +16,21 @@ export default {
 
       const base = env.PORTFOLIO_BACKEND_BASE_URL || 'https://portfolio-backend.armedifaiz.workers.dev'
 
+      const forwardedHeaders = new Headers()
+
+      // Forward only a safe subset to avoid sending problematic headers like `host`.
+      for (const [key, value] of request.headers.entries()) {
+        const lower = key.toLowerCase()
+        if (lower === 'authorization' || lower === 'content-type' || lower === 'accept') {
+          forwardedHeaders.set(key, value)
+        } else if (lower.startsWith('cf-access-')) {
+          forwardedHeaders.set(key, value)
+        }
+      }
+
       const init: RequestInit = {
         method: request.method,
-        headers: request.headers,
+        headers: forwardedHeaders,
         redirect: 'manual',
       }
 

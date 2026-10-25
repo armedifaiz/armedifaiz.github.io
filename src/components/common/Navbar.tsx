@@ -55,6 +55,15 @@ export default function Navbar() {
               </svg>
             </a>
           ))}
+
+          <a
+            href="/admin/"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-xl border border-accent/50 bg-accent/15 px-4 py-2 text-sm font-semibold text-accent-200 hover:bg-accent/25"
+          >
+            Admin
+          </a>
         </div>
       </div>
     </motion.header>

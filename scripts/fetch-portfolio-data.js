@@ -21,29 +21,16 @@ import { dirname, join } from 'path';
 const REPO = process.env.DATA_REPO || 'armedifaiz/portfolio-data';
 const BRANCH = process.env.DATA_BRANCH || 'main';
 const BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}`;
-const BACKEND_BASE_URL = process.env.PORTFOLIO_BACKEND_BASE_URL || '';
 const OUT = process.env.OUTPUT_DIR || process.cwd();
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-const fetchJsonRaw = async (path) => {
+const fetchJson = async (path) => {
   const res = await fetch(`${BASE}/${path}`);
   if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${path}`);
   return res.json();
-};
-
-const fetchJson = async (path, backendEndpoint) => {
-  if (BACKEND_BASE_URL && backendEndpoint) {
-    try {
-      const res = await fetch(`${BACKEND_BASE_URL}${backendEndpoint}`);
-      if (res.ok) return await res.json();
-    } catch {
-      // fall back to portfolio-data raw
-    }
-  }
-  return fetchJsonRaw(path);
 };
 
 const fetchBuffer = async (path) => {
@@ -64,7 +51,7 @@ const write = (path, data) => {
 async function main() {
   // --- Photos ---
   console.error('Fetching photos/data.json...');
-  const photos = await fetchJson('photos/data.json', '/api/portfolio/photos');
+  const photos = await fetchJson('photos/data.json');
   for (const p of photos) {
     const url = `photos/${p.filename}`;
     console.error(`  Downloading ${url}...`);
@@ -77,7 +64,7 @@ async function main() {
 
   // --- Certificates ---
   console.error('Fetching certificates/data.json...');
-  const certs = await fetchJson('certificates/data.json', '/api/portfolio/certificates');
+  const certs = await fetchJson('certificates/data.json');
   for (const c of certs) {
     const url = `certificates/${c.filename}`;
     console.error(`  Downloading ${url}...`);
@@ -97,12 +84,7 @@ async function main() {
   // --- Static data ---
   for (const name of ['experience.json', 'skills.json', 'socials.json']) {
     console.error(`Fetching ${name}...`);
-    const backendEndpoint = name === 'experience.json'
-      ? '/api/portfolio/experience'
-      : name === 'skills.json'
-        ? '/api/portfolio/skills'
-        : '/api/portfolio/socials';
-    const data = await fetchJson(name, backendEndpoint);
+    const data = await fetchJson(name);
     write(join(OUT, 'src', 'data', name), JSON.stringify(data, null, 2));
     console.error(`  -> ${name} saved`);
   }

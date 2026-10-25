@@ -44,9 +44,6 @@ jobs:
 
       - name: Fetch portfolio data (photos, certificates)
         run: node scripts/fetch-portfolio-data.js
-        env:
-          # Prefer backend API when available; fetch script falls back to portfolio-data raw.
-          PORTFOLIO_BACKEND_BASE_URL: https://portfolio-backend.armedifaiz.workers.dev
 
       - name: Build
         run: npm run build

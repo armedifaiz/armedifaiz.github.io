@@ -8,7 +8,16 @@ import Certificates from './sections/Certificates'
 import Badges from './sections/Badges'
 import Contact from './sections/Contact'
 
+import AdminDashboard from './admin/pages/AdminDashboard'
+
 export default function App() {
+  const path = typeof window !== 'undefined' ? window.location.pathname : ''
+  const isAdmin = path === '/admin' || path.startsWith('/admin/')
+
+  if (isAdmin) {
+    return <AdminDashboard />
+  }
+
   return (
     <div className="bg-base-950">
       <Navbar />

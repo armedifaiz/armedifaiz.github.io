@@ -461,3 +461,13 @@ export default function AdminDashboard() {
     </div>
   )
 }
+  // Handle the case where we have a CF Access redirect in the URL path, which means we were just logged in and should try our API calls now.
+  useEffect(() => {
+    const url = new URL(window.location.href)
+    const pathSegments = url.pathname.split('/').filter(Boolean)
+    if (pathSegments.length >= 2 && pathSegments[0] === 'cdn-cgi' && pathSegments[1] === 'access') {
+      // Clear the current URL to clean the dashboard.
+      window.history.replaceState({}, '', '/admin/')
+    }
+  }, [])
+

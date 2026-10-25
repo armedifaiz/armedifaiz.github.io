@@ -1,18 +1,11 @@
 {
-  "resources/spa/assets/logo-red-white.png": {
-    "file": "assets/logo-red-white-BH03mrnD.png",
-    "src": "resources/spa/assets/logo-red-white.png"
-  },
   "resources/spa/main.tsx": {
-    "file": "assets/main-IHZqrMr3.js",
+    "file": "assets/main-CqInFV3d.js",
     "name": "main",
     "src": "resources/spa/main.tsx",
     "isEntry": true,
     "css": [
       "assets/main-CesFuA-n.css"
-    ],
-    "assets": [
-      "assets/logo-red-white-BH03mrnD.png"
     ]
   }
 }

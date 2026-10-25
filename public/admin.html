@@ -201,9 +201,13 @@
               <input id="backendBaseUrl" type="url" placeholder="https://portfolio-backend.armedifaiz.workers.dev" />
             </div>
             <div>
-              <label>Admin token (Bearer)</label>
-              <input id="adminToken" type="text" placeholder="PORTFOLIO_ADMIN_TOKEN" />
-              <div class="hint">Token disimpan di browser (localStorage). Untuk Anda saja.</div>
+              <label>Admin password</label>
+              <input id="adminPassword" type="password" placeholder="PORTFOLIO_ADMIN_PASSWORD" />
+              <div class="hint">Login membuat session token otomatis. Anda tidak perlu input admin token lagi.</div>
+              <div class="btnbar" style="margin-top: 10px;">
+                <button class="primary" id="btnLogin">Login</button>
+                <button class="danger" id="btnLogout" type="button">Logout</button>
+              </div>
             </div>
           </div>
           <div class="btnbar">
@@ -485,9 +489,11 @@
       }
 
       function getCreds() {
+        let sessionToken = ''
+        try { sessionToken = localStorage.getItem('portfolio_admin_session_token') || '' } catch {}
         return {
           backendBaseUrl: els('backendBaseUrl').value.trim(),
-          token: els('adminToken').value.trim(),
+          token: sessionToken,
         };
       }
 
@@ -605,16 +611,41 @@
       // --- Creds init ---
       (function init() {
         els('backendBaseUrl').value = localStorage.getItem('portfolio_backend_base_url') || DEFAULT_BACKEND_BASE;
-        els('adminToken').value = localStorage.getItem('portfolio_admin_token') || '';
         activateTabs();
       })();
 
       els('btnSaveCreds').addEventListener('click', () => {
-        const { backendBaseUrl, token } = getCreds();
+        const { backendBaseUrl } = getCreds();
         if (!backendBaseUrl) return setStatus('Backend URL wajib diisi', 'err');
         localStorage.setItem('portfolio_backend_base_url', backendBaseUrl);
-        if (token) localStorage.setItem('portfolio_admin_token', token);
         setStatus('Creds tersimpan.');
+      });
+
+      els('btnLogin').addEventListener('click', async () => {
+        try {
+          const { backendBaseUrl } = getCreds();
+          if (!backendBaseUrl) return setStatus('Backend URL wajib diisi', 'err');
+
+          const password = els('adminPassword').value.trim();
+          if (!password) throw new Error('Password wajib');
+
+          setStatus('Login...');
+          const res = await api('/api/portfolio/login', {
+            method: 'POST',
+            body: JSON.stringify({ password }),
+          });
+          if (!res?.ok || !res?.token) throw new Error('Login gagal');
+
+          localStorage.setItem('portfolio_admin_session_token', res.token);
+          setStatus('Login OK.');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnLogout').addEventListener('click', () => {
+        try { localStorage.removeItem('portfolio_admin_session_token'); } catch {}
+        setStatus('Logout OK.');
       });
 
       els('btnLoadIndex').addEventListener('click', async () => {
@@ -641,7 +672,7 @@
       els('btnExperienceUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const item = {
             role: els('expRole').value.trim(),
             organization: els('expOrg').value.trim(),
@@ -668,7 +699,7 @@
       els('btnSkillsUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const item = {
             name: els('skName').value.trim(),
             slug: els('skSlug').value.trim(),
@@ -688,7 +719,7 @@
       els('btnSocialsUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const item = {
             platform: els('soPlatform').value.trim(),
             url: els('soUrl').value.trim(),
@@ -708,7 +739,7 @@
       els('btnPhotosUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const file = els('phFile').files?.[0];
           if (!file) throw new Error('Pilih file gambar');
 
@@ -746,7 +777,7 @@
       els('btnPhotosDelete').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const photoId = els('phDeleteId').value.trim();
           if (!photoId) throw new Error('photo id wajib');
           const delImg = els('phDeleteImage').value === 'true';
@@ -767,7 +798,7 @@
       els('btnCertificatesUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const file = els('ceFile').files?.[0];
           if (!file) throw new Error('Pilih file gambar');
 
@@ -810,7 +841,7 @@
       els('btnCertificatesDelete').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          if (!token) return setStatus('Silakan login dulu', 'err');
           const certId = els('ceDeleteId').value.trim();
           if (!certId) throw new Error('certificate id wajib');
           const delImg = els('ceDeleteImage').value === 'true';

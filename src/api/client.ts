@@ -20,10 +20,19 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(path, init)
   const payload = await readJsonOrText(res)
   if (!res.ok) {
-    const msg =
+    let msg =
       typeof payload === 'string'
         ? payload
         : (payload as ApiError)?.error || (payload as ApiError)?.detail || res.statusText
+
+    // If backend includes debug info (e.g. Cloudflare Access header presence), surface it.
+    if (payload && typeof payload === 'object' && 'debug' in payload) {
+      try {
+        msg = `${msg} | debug=${JSON.stringify((payload as { debug: unknown }).debug)}`
+      } catch {
+        // ignore JSON stringify failures
+      }
+    }
     throw new Error(msg)
   }
   return payload as T

@@ -47,6 +47,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create admin SPA entrypoints (/admin)
+        run: |
+          mkdir -p ./dist/admin
+          cp ./dist/index.html ./dist/admin/index.html
+          cp ./dist/index.html ./dist/admin.html || true
+
       - name: Deploy to Cloudflare Worker Assets
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

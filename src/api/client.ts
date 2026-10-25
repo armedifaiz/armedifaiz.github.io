@@ -27,7 +27,9 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return payload as T
 }
 
-const base = '/api/portfolio'
+// Important: call the backend directly from the browser.
+// Worker-to-worker proxying currently returns Cloudflare error code 1042.
+const base = 'https://portfolio-backend.armedifaiz.workers.dev/api/portfolio'
 
 export type Certificate = {
   id: string

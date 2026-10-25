@@ -42,12 +42,14 @@ export default {
       if (debugFetch) {
         const backendUrl = `${base}${url.pathname}${url.search}`
         const backendResp = await fetch(backendUrl, init)
+        const backendText = await backendResp.text().catch(() => '')
         return new Response(
           JSON.stringify({
             proxied: true,
             backendUrl,
             backendStatus: backendResp.status,
             backendContentType: backendResp.headers.get('content-type'),
+            backendBodyStart: backendText.slice(0, 160),
           }),
           { headers: { 'content-type': 'application/json; charset=utf-8' } },
         )

@@ -2,6 +2,20 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url)
 
+    // Enforce admin UI on the portfolio subdomain only.
+    // If someone hits `faizarmedi.com/admin*`, redirect them to
+    // `https://portfolio.faizarmedi.com/admin/`.
+    const isAdminPath =
+      url.pathname === '/admin' ||
+      url.pathname === '/admin.html' ||
+      url.pathname.startsWith('/admin/')
+
+    if (isAdminPath && url.hostname !== 'portfolio.faizarmedi.com') {
+      const target = new URL('/admin/', 'https://portfolio.faizarmedi.com')
+      target.search = url.search
+      return Response.redirect(target.toString(), 302)
+    }
+
     // Proxy API calls to the CRUD worker.
     if (url.pathname.startsWith('/api/portfolio')) {
       const base = env.PORTFOLIO_BACKEND_BASE_URL || 'https://portfolio-backend.armedifaiz.workers.dev'

@@ -9,6 +9,9 @@
   },
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "PORTFOLIO_BACKEND_BASE_URL": "https://portfolio-backend.armedifaiz.workers.dev"
   }
 }
 

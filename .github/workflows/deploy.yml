@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Worker Assets
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -11,10 +11,11 @@ on:
 
 permissions:
   contents: read
-  deployments: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: "cf-worker-assets"
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -53,10 +54,16 @@ jobs:
           cp ./dist/index.html ./dist/admin/index.html
           cp ./dist/index.html ./dist/admin.html || true
 
-      - name: Deploy to Cloudflare Worker Assets
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: |
-          cd ./
-          npm i --no-save wrangler@4
-          npx wrangler deploy
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

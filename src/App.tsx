@@ -12,7 +12,15 @@ import AdminDashboard from './admin/pages/AdminDashboard'
 
 export default function App() {
   const path = typeof window !== 'undefined' ? window.location.pathname : ''
-  const isAdmin = path === '/admin' || path.startsWith('/admin/')
+  const search = typeof window !== 'undefined' ? window.location.search : ''
+  const hash = typeof window !== 'undefined' ? window.location.hash : ''
+
+  const params = typeof window !== 'undefined' ? new URLSearchParams(search) : new URLSearchParams('')
+  const isAdminByQuery = params.get('admin') === '1'
+  const isAdminByHash = hash.includes('#/admin') || hash === '#/admin'
+  const isAdminByPath = path === '/admin' || path.startsWith('/admin/')
+
+  const isAdmin = isAdminByQuery || isAdminByHash || isAdminByPath
 
   if (isAdmin) {
     return <AdminDashboard />

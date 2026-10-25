@@ -212,17 +212,6 @@
             <button id="btnLoadAll">Load semua data</button>
           </div>
 
-          <div style="margin-top: 12px;">
-            <label>Tambah/Update data apa?</label>
-            <select id="quickAddType" style="margin-top: 6px;">
-              <option value="tab-certificates" selected>Certificates</option>
-              <option value="tab-photos">Photos</option>
-              <option value="tab-experience">Experience</option>
-              <option value="tab-skills">Skills</option>
-              <option value="tab-socials">Socials</option>
-            </select>
-            <div class="hint">Pilih ini supaya langsung pindah ke form yang relevan.</div>
-          </div>
           <div class="mini" style="margin-top: 12px;" id="indexPills"></div>
           <div class="status" id="statusBox">Siap.</div>
         </div>
@@ -238,50 +227,40 @@
           <!-- EXPERIENCE -->
           <div class="tab active" id="tab-experience">
             <h3 style="margin: 0 0 12px; font-size: 16px;">Experience</h3>
-            <div class="grid2">
-              <div>
-                <label>Replace full array (PUT)</label>
-                <textarea id="experienceJson" placeholder='[ {"role":"...","organization":"...","period":"...","duration":"...","type":"...","description":"..."} ]'></textarea>
-                <div class="btnbar">
-                  <button id="btnExperienceReplace" class="primary">Replace</button>
-                  <button id="btnExperienceClear" class="danger">Clear</button>
+            <div>
+              <label>Upsert one item (POST)</label>
+              <div class="row" style="grid-template-columns: 1fr 1fr;">
+                <div>
+                  <label>role</label>
+                  <input type="text" id="expRole" />
+                </div>
+                <div>
+                  <label>period</label>
+                  <input type="text" id="expPeriod" />
                 </div>
               </div>
-              <div>
-                <label>Upsert one item (POST)</label>
-                <div class="row" style="grid-template-columns: 1fr 1fr;">
-                  <div>
-                    <label>role</label>
-                    <input type="text" id="expRole" />
-                  </div>
-                  <div>
-                    <label>period</label>
-                    <input type="text" id="expPeriod" />
-                  </div>
+              <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                <div>
+                  <label>organization</label>
+                  <input type="text" id="expOrg" />
                 </div>
-                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
-                  <div>
-                    <label>organization</label>
-                    <input type="text" id="expOrg" />
-                  </div>
-                  <div>
-                    <label>duration</label>
-                    <input type="text" id="expDuration" />
-                  </div>
+                <div>
+                  <label>duration</label>
+                  <input type="text" id="expDuration" />
                 </div>
-                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
-                  <div>
-                    <label>type</label>
-                    <input type="text" id="expType" />
-                  </div>
-                  <div>
-                    <label>description (HTML boleh)</label>
-                    <input type="text" id="expDescription" />
-                  </div>
+              </div>
+              <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                <div>
+                  <label>type</label>
+                  <input type="text" id="expType" />
                 </div>
-                <div class="btnbar">
-                  <button id="btnExperienceUpsert" class="primary">Upsert</button>
+                <div>
+                  <label>description (HTML boleh)</label>
+                  <input type="text" id="expDescription" />
                 </div>
+              </div>
+              <div class="btnbar">
+                <button id="btnExperienceUpsert" class="primary">Upsert</button>
               </div>
             </div>
           </div>
@@ -289,34 +268,24 @@
           <!-- SKILLS -->
           <div class="tab" id="tab-skills">
             <h3 style="margin: 0 0 12px; font-size: 16px;">Skills</h3>
-            <div class="grid2">
-              <div>
-                <label>Replace full array (PUT)</label>
-                <textarea id="skillsJson" placeholder='[ {"name":"...","slug":"...","icon":"https://..."} ]'></textarea>
-                <div class="btnbar">
-                  <button id="btnSkillsReplace" class="primary">Replace</button>
-                  <button id="btnSkillsClear" class="danger">Clear</button>
+            <div>
+              <label>Upsert one item (POST)</label>
+              <div class="row" style="grid-template-columns: 1fr 1fr;">
+                <div>
+                  <label>name</label>
+                  <input type="text" id="skName" />
+                </div>
+                <div>
+                  <label>slug (key)</label>
+                  <input type="text" id="skSlug" />
                 </div>
               </div>
-              <div>
-                <label>Upsert one item (POST)</label>
-                <div class="row" style="grid-template-columns: 1fr 1fr;">
-                  <div>
-                    <label>name</label>
-                    <input type="text" id="skName" />
-                  </div>
-                  <div>
-                    <label>slug (key)</label>
-                    <input type="text" id="skSlug" />
-                  </div>
-                </div>
-                <div style="margin-top: 10px;">
-                  <label>icon (URL)</label>
-                  <input type="url" id="skIcon" />
-                </div>
-                <div class="btnbar">
-                  <button id="btnSkillsUpsert" class="primary">Upsert</button>
-                </div>
+              <div style="margin-top: 10px;">
+                <label>icon (URL)</label>
+                <input type="url" id="skIcon" />
+              </div>
+              <div class="btnbar">
+                <button id="btnSkillsUpsert" class="primary">Upsert</button>
               </div>
             </div>
           </div>
@@ -324,34 +293,24 @@
           <!-- SOCIALS -->
           <div class="tab" id="tab-socials">
             <h3 style="margin: 0 0 12px; font-size: 16px;">Socials</h3>
-            <div class="grid2">
-              <div>
-                <label>Replace full array (PUT)</label>
-                <textarea id="socialsJson" placeholder='[ {"platform":"...","url":"https://...","icon":"..."} ]'></textarea>
-                <div class="btnbar">
-                  <button id="btnSocialsReplace" class="primary">Replace</button>
-                  <button id="btnSocialsClear" class="danger">Clear</button>
+            <div>
+              <label>Upsert one item (POST)</label>
+              <div class="row" style="grid-template-columns: 1fr 1fr;">
+                <div>
+                  <label>platform (key)</label>
+                  <input type="text" id="soPlatform" />
+                </div>
+                <div>
+                  <label>url</label>
+                  <input type="url" id="soUrl" />
                 </div>
               </div>
-              <div>
-                <label>Upsert one item (POST)</label>
-                <div class="row" style="grid-template-columns: 1fr 1fr;">
-                  <div>
-                    <label>platform (key)</label>
-                    <input type="text" id="soPlatform" />
-                  </div>
-                  <div>
-                    <label>url</label>
-                    <input type="url" id="soUrl" />
-                  </div>
-                </div>
-                <div style="margin-top: 10px;">
-                  <label>icon</label>
-                  <input type="text" id="soIcon" />
-                </div>
-                <div class="btnbar">
-                  <button id="btnSocialsUpsert" class="primary">Upsert</button>
-                </div>
+              <div style="margin-top: 10px;">
+                <label>icon</label>
+                <input type="text" id="soIcon" />
+              </div>
+              <div class="btnbar">
+                <button id="btnSocialsUpsert" class="primary">Upsert</button>
               </div>
             </div>
           </div>
@@ -588,9 +547,6 @@
           api('/api/portfolio/photos'),
           api('/api/portfolio/certificates'),
         ]);
-        els('experienceJson').value = JSON.stringify(experience, null, 2);
-        els('skillsJson').value = JSON.stringify(skills, null, 2);
-        els('socialsJson').value = JSON.stringify(socials, null, 2);
         els('photosJson').value = JSON.stringify(photos, null, 2);
         els('certificatesJson').value = JSON.stringify(certificates, null, 2);
         setStatus('Semua data ter-load.');
@@ -603,23 +559,12 @@
         });
         document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
         if (els(tabId)) els(tabId).classList.add('active');
-
-        const dd = els('quickAddType');
-        if (dd) dd.value = tabId;
-        try {
-          localStorage.setItem('portfolio_quick_add_type', tabId);
-        } catch {}
       }
 
       function activateTabs() {
         document.querySelectorAll('.tab-btn').forEach((btn) => {
           btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
         });
-
-        const dd = els('quickAddType');
-        if (dd) {
-          dd.addEventListener('change', () => setActiveTab(dd.value));
-        }
       }
 
       async function fileToDataUrl(file) {
@@ -662,14 +607,6 @@
         els('backendBaseUrl').value = localStorage.getItem('portfolio_backend_base_url') || DEFAULT_BACKEND_BASE;
         els('adminToken').value = localStorage.getItem('portfolio_admin_token') || '';
         activateTabs();
-
-        const savedQuick = (() => {
-          try { return localStorage.getItem('portfolio_quick_add_type'); } catch { return null; }
-        })();
-        if (els('quickAddType')) {
-          els('quickAddType').value = savedQuick || els('quickAddType').value;
-          setActiveTab(els('quickAddType').value || 'tab-certificates');
-        }
       })();
 
       els('btnSaveCreds').addEventListener('click', () => {
@@ -700,36 +637,7 @@
         }
       });
 
-      // EXPERIENCE replace/clear/upsert
-      els('btnExperienceReplace').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          const items = jsonParseOrThrow(els('experienceJson').value);
-          setStatus('Updating experience...');
-          await api('/api/portfolio/experience', {
-            method: 'PUT',
-            token,
-            body: JSON.stringify(items),
-          });
-          setStatus('Experience updated. Tunggu rebuild GitHub Pages 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
-      els('btnExperienceClear').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          setStatus('Clearing experience...');
-          await api('/api/portfolio/experience', { method: 'DELETE', token });
-          setStatus('Experience cleared. Tunggu rebuild 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
+      // EXPERIENCE upsert (field-based)
       els('btnExperienceUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
@@ -756,32 +664,7 @@
         }
       });
 
-      // SKILLS
-      els('btnSkillsReplace').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          const items = jsonParseOrThrow(els('skillsJson').value);
-          setStatus('Updating skills...');
-          await api('/api/portfolio/skills', { method: 'PUT', token, body: JSON.stringify(items) });
-          setStatus('Skills updated. Tunggu rebuild 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
-      els('btnSkillsClear').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          setStatus('Clearing skills...');
-          await api('/api/portfolio/skills', { method: 'DELETE', token });
-          setStatus('Skills cleared. Tunggu rebuild 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
+      // SKILLS upsert (field-based)
       els('btnSkillsUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();
@@ -801,32 +684,7 @@
         }
       });
 
-      // SOCIALS
-      els('btnSocialsReplace').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          const items = jsonParseOrThrow(els('socialsJson').value);
-          setStatus('Updating socials...');
-          await api('/api/portfolio/socials', { method: 'PUT', token, body: JSON.stringify(items) });
-          setStatus('Socials updated. Tunggu rebuild 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
-      els('btnSocialsClear').addEventListener('click', async () => {
-        try {
-          const { token } = getCreds();
-          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
-          setStatus('Clearing socials...');
-          await api('/api/portfolio/socials', { method: 'DELETE', token });
-          setStatus('Socials cleared. Tunggu rebuild 1–3 menit.', 'ok');
-        } catch (e) {
-          setStatus(String(e.message || e), 'err');
-        }
-      });
-
+      // SOCIALS upsert (field-based)
       els('btnSocialsUpsert').addEventListener('click', async () => {
         try {
           const { token } = getCreds();

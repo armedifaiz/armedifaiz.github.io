@@ -1,5 +1,5 @@
 {
-  "name": "faizarmedi-portfolio-site",
+  "name": "faizarm-portfolio-site",
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": "worker/index.ts",
   "compatibility_date": "2026-10-19",
@@ -14,4 +14,3 @@
     "PORTFOLIO_BACKEND_BASE_URL": "https://portfolio-backend.armedifaiz.workers.dev"
   }
 }
-

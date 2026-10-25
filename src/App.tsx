@@ -18,7 +18,10 @@ export default function App() {
   const params = typeof window !== 'undefined' ? new URLSearchParams(search) : new URLSearchParams('')
   const isAdminByQuery = params.get('admin') === '1'
   const isAdminByHash = hash.includes('#/admin') || hash === '#/admin'
-  const isAdminByPath = path === '/admin' || path.startsWith('/admin/')
+  const isAdminByPath =
+    path === '/admin' ||
+    path === '/admin.html' ||
+    path.startsWith('/admin/')
 
   const isAdmin = isAdminByQuery || isAdminByHash || isAdminByPath
 

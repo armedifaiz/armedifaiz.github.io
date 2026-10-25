@@ -19,6 +19,9 @@ async function readJsonOrText(res: Response): Promise<unknown> {
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const finalInit: RequestInit = {
     credentials: 'include',
+    // Prevent following Cloudflare Access redirects to the login page,
+    // which breaks CORS (login response has no ACAO).
+    redirect: 'manual',
     ...(init || {}),
   }
 

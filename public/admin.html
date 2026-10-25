@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Admin</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel2: rgba(255, 255, 255, 0.1);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.65);
+        --accent: #8b5cf6;
+        --danger: #ef4444;
+        --ok: #22c55e;
+        --border: rgba(255, 255, 255, 0.14);
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: radial-gradient(1200px 600px at 20% 0%, rgba(139, 92, 246, 0.22), transparent 50%),
+          radial-gradient(900px 500px at 80% 10%, rgba(34, 197, 94, 0.14), transparent 55%), var(--bg);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 60px;
+      }
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .title {
+        line-height: 1.1;
+      }
+      .title h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+      .title p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 16px 60px var(--shadow);
+        overflow: hidden;
+      }
+      .card-inner {
+        padding: 16px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 760px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      input[type='text'], input[type='url'], input[type='file'], textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 12px;
+        outline: none;
+      }
+      textarea { min-height: 140px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .tab-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .tab-btn.active {
+        border-color: rgba(139, 92, 246, 0.7);
+        color: rgba(255, 255, 255, 0.92);
+        background: rgba(139, 92, 246, 0.18);
+      }
+      .tab {
+        display: none;
+      }
+      .tab.active {
+        display: block;
+      }
+      .btnbar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      button.primary {
+        border-color: rgba(139, 92, 246, 0.8);
+        background: rgba(139, 92, 246, 0.22);
+      }
+      button.danger {
+        border-color: rgba(239, 68, 68, 0.8);
+        background: rgba(239, 68, 68, 0.14);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .status {
+        margin-top: 10px;
+        background: rgba(0, 0, 0, 0.18);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        white-space: pre-wrap;
+      }
+      .status.ok { color: rgba(34, 197, 94, 0.95); border-color: rgba(34, 197, 94, 0.45); }
+      .status.err { color: rgba(239, 68, 68, 0.95); border-color: rgba(239, 68, 68, 0.45); }
+      .mini {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .pill b { color: var(--text); }
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 760px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="title">
+          <h1>Portfolio Admin</h1>
+          <p>Tambah/ubah data portofolio via CRUD API (tersambung ke repo <b>portfolio-data</b>).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="row">
+            <div>
+              <label>Cloudflare Worker base URL</label>
+              <input id="backendBaseUrl" type="url" placeholder="https://portfolio-backend.armedifaiz.workers.dev" />
+            </div>
+            <div>
+              <label>Admin token (Bearer)</label>
+              <input id="adminToken" type="text" placeholder="PORTFOLIO_ADMIN_TOKEN" />
+              <div class="hint">Token disimpan di browser (localStorage). Untuk Anda saja.</div>
+            </div>
+          </div>
+          <div class="btnbar">
+            <button class="primary" id="btnSaveCreds">Simpan & Aktifkan</button>
+            <button id="btnLoadIndex">Load index</button>
+            <button id="btnLoadAll">Load semua data</button>
+          </div>
+          <div class="mini" style="margin-top: 12px;" id="indexPills"></div>
+          <div class="status" id="statusBox">Siap.</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-experience">Experience</button>
+          <button class="tab-btn" data-tab="tab-skills">Skills</button>
+          <button class="tab-btn" data-tab="tab-socials">Socials</button>
+          <button class="tab-btn" data-tab="tab-photos">Photos</button>
+          <button class="tab-btn" data-tab="tab-certificates">Certificates</button>
+        </div>
+
+        <div class="card-inner">
+          <!-- EXPERIENCE -->
+          <div class="tab active" id="tab-experience">
+            <h3 style="margin: 0 0 12px; font-size: 16px;">Experience</h3>
+            <div class="grid2">
+              <div>
+                <label>Replace full array (PUT)</label>
+                <textarea id="experienceJson" placeholder='[ {"role":"...","organization":"...","period":"...","duration":"...","type":"...","description":"..."} ]'></textarea>
+                <div class="btnbar">
+                  <button id="btnExperienceReplace" class="primary">Replace</button>
+                  <button id="btnExperienceClear" class="danger">Clear</button>
+                </div>
+              </div>
+              <div>
+                <label>Upsert one item (POST)</label>
+                <div class="row" style="grid-template-columns: 1fr 1fr;">
+                  <div>
+                    <label>role</label>
+                    <input type="text" id="expRole" />
+                  </div>
+                  <div>
+                    <label>period</label>
+                    <input type="text" id="expPeriod" />
+                  </div>
+                </div>
+                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                  <div>
+                    <label>organization</label>
+                    <input type="text" id="expOrg" />
+                  </div>
+                  <div>
+                    <label>duration</label>
+                    <input type="text" id="expDuration" />
+                  </div>
+                </div>
+                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                  <div>
+                    <label>type</label>
+                    <input type="text" id="expType" />
+                  </div>
+                  <div>
+                    <label>description (HTML boleh)</label>
+                    <input type="text" id="expDescription" />
+                  </div>
+                </div>
+                <div class="btnbar">
+                  <button id="btnExperienceUpsert" class="primary">Upsert</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKILLS -->
+          <div class="tab" id="tab-skills">
+            <h3 style="margin: 0 0 12px; font-size: 16px;">Skills</h3>
+            <div class="grid2">
+              <div>
+                <label>Replace full array (PUT)</label>
+                <textarea id="skillsJson" placeholder='[ {"name":"...","slug":"...","icon":"https://..."} ]'></textarea>
+                <div class="btnbar">
+                  <button id="btnSkillsReplace" class="primary">Replace</button>
+                  <button id="btnSkillsClear" class="danger">Clear</button>
+                </div>
+              </div>
+              <div>
+                <label>Upsert one item (POST)</label>
+                <div class="row" style="grid-template-columns: 1fr 1fr;">
+                  <div>
+                    <label>name</label>
+                    <input type="text" id="skName" />
+                  </div>
+                  <div>
+                    <label>slug (key)</label>
+                    <input type="text" id="skSlug" />
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>icon (URL)</label>
+                  <input type="url" id="skIcon" />
+                </div>
+                <div class="btnbar">
+                  <button id="btnSkillsUpsert" class="primary">Upsert</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOCIALS -->
+          <div class="tab" id="tab-socials">
+            <h3 style="margin: 0 0 12px; font-size: 16px;">Socials</h3>
+            <div class="grid2">
+              <div>
+                <label>Replace full array (PUT)</label>
+                <textarea id="socialsJson" placeholder='[ {"platform":"...","url":"https://...","icon":"..."} ]'></textarea>
+                <div class="btnbar">
+                  <button id="btnSocialsReplace" class="primary">Replace</button>
+                  <button id="btnSocialsClear" class="danger">Clear</button>
+                </div>
+              </div>
+              <div>
+                <label>Upsert one item (POST)</label>
+                <div class="row" style="grid-template-columns: 1fr 1fr;">
+                  <div>
+                    <label>platform (key)</label>
+                    <input type="text" id="soPlatform" />
+                  </div>
+                  <div>
+                    <label>url</label>
+                    <input type="url" id="soUrl" />
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>icon</label>
+                  <input type="text" id="soIcon" />
+                </div>
+                <div class="btnbar">
+                  <button id="btnSocialsUpsert" class="primary">Upsert</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PHOTOS -->
+          <div class="tab" id="tab-photos">
+            <h3 style="margin: 0 0 12px; font-size: 16px;">Photos</h3>
+            <div class="grid2">
+              <div>
+                <label>Upsert photo (POST)</label>
+                <div class="row" style="grid-template-columns: 1fr 1fr;">
+                  <div>
+                    <label>id</label>
+                    <input type="text" id="phId" />
+                  </div>
+                  <div>
+                    <label>caption</label>
+                    <input type="text" id="phCaption" />
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>takenAt</label>
+                  <input type="text" id="phTakenAt" placeholder="" />
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>image file (jpg/png)</label>
+                  <input type="file" id="phFile" accept="image/*" />
+                </div>
+                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                  <div>
+                    <label>filename (safe, no /)</label>
+                    <input type="text" id="phFilename" placeholder="<id>_verified.jpg" />
+                  </div>
+                  <div>
+                    <label>Re-use last filename</label>
+                    <select id="phAutoFilename">
+                      <option value="yes" selected>Auto-suggest from id & ext</option>
+                      <option value="no">Manual (pakai field filename)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="btnbar">
+                  <button id="btnPhotosUpsert" class="primary">Upload & Upsert</button>
+                </div>
+              </div>
+              <div>
+                <label>Delete photo by id</label>
+                <div style="margin-top: 10px;">
+                  <label>photo id</label>
+                  <input type="text" id="phDeleteId" />
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>Delete image file too?</label>
+                  <select id="phDeleteImage">
+                    <option value="false" selected>No (metadata saja)</option>
+                    <option value="true">Yes (hapus gambar juga)</option>
+                  </select>
+                </div>
+                <div class="btnbar">
+                  <button id="btnPhotosDelete" class="danger">Delete</button>
+                </div>
+
+                <div style="margin-top: 16px;">
+                  <label>Current photos JSON (read-only)</label>
+                  <textarea id="photosJson" readonly placeholder="(load via tombol Load semua data)"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATES -->
+          <div class="tab" id="tab-certificates">
+            <h3 style="margin: 0 0 12px; font-size: 16px;">Certificates</h3>
+            <div class="grid2">
+              <div>
+                <label>Upsert certificate (POST)</label>
+                <div class="row" style="grid-template-columns: 1fr 1fr;">
+                  <div>
+                    <label>id</label>
+                    <input type="text" id="ceId" />
+                  </div>
+                  <div>
+                    <label>title</label>
+                    <input type="text" id="ceTitle" />
+                  </div>
+                </div>
+                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                  <div>
+                    <label>issuer</label>
+                    <input type="text" id="ceIssuer" />
+                  </div>
+                  <div>
+                    <label>date</label>
+                    <input type="text" id="ceDate" placeholder="" />
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>description</label>
+                  <input type="text" id="ceDescription" />
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>category</label>
+                  <input type="text" id="ceCategory" />
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>image file (jpg/png)</label>
+                  <input type="file" id="ceFile" accept="image/*" />
+                </div>
+                <div class="row" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                  <div>
+                    <label>filename (safe, no /)</label>
+                    <input type="text" id="ceFilename" placeholder="<id>_verified.jpg" />
+                  </div>
+                  <div>
+                    <label>Auto-suggest from id & ext</label>
+                    <select id="ceAutoFilename">
+                      <option value="yes" selected>Auto</option>
+                      <option value="no">Manual</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="btnbar">
+                  <button id="btnCertificatesUpsert" class="primary">Upload & Upsert</button>
+                </div>
+              </div>
+              <div>
+                <label>Delete certificate by id</label>
+                <div style="margin-top: 10px;">
+                  <label>certificate id</label>
+                  <input type="text" id="ceDeleteId" />
+                </div>
+                <div style="margin-top: 10px;">
+                  <label>Delete image file too?</label>
+                  <select id="ceDeleteImage">
+                    <option value="false" selected>No (metadata saja)</option>
+                    <option value="true">Yes (hapus gambar juga)</option>
+                  </select>
+                </div>
+                <div class="btnbar">
+                  <button id="btnCertificatesDelete" class="danger">Delete</button>
+                </div>
+
+                <div style="margin-top: 16px;">
+                  <label>Current certificates JSON (read-only)</label>
+                  <textarea id="certificatesJson" readonly placeholder="(load via tombol Load semua data)"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" style="margin-top: 14px;">
+        Catatan: update portofolio biasanya butuh 1–3 menit karena workflow rebuild GitHub Pages.
+      </div>
+    </div>
+
+    <script>
+      const DEFAULT_BACKEND_BASE = 'https://portfolio-backend.armedifaiz.workers.dev';
+
+      const els = (id) => document.getElementById(id);
+      const statusBox = els('statusBox');
+
+      function setStatus(msg, kind) {
+        statusBox.textContent = msg;
+        statusBox.classList.remove('ok', 'err');
+        if (kind === 'ok') statusBox.classList.add('ok');
+        if (kind === 'err') statusBox.classList.add('err');
+      }
+
+      function getCreds() {
+        return {
+          backendBaseUrl: els('backendBaseUrl').value.trim(),
+          token: els('adminToken').value.trim(),
+        };
+      }
+
+      function authHeaders(token) {
+        return token ? { Authorization: `Bearer ${token}` } : {};
+      }
+
+      async function api(path, { method = 'GET', body, token, contentType = 'application/json' } = {}) {
+        const { backendBaseUrl } = getCreds();
+        const url = `${backendBaseUrl}${path}`;
+        const headers = {
+          ...authHeaders(token),
+        };
+        if (body !== undefined) {
+          headers['Content-Type'] = contentType;
+        }
+
+        const res = await fetch(url, {
+          method,
+          headers,
+          body: body === undefined ? undefined : body,
+        });
+        const text = await res.text();
+        let data = null;
+        try { data = text ? JSON.parse(text) : null; } catch { /* ignore */ }
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${text || res.statusText}`);
+        }
+        return data;
+      }
+
+      function jsonParseOrThrow(txt) {
+        const t = txt.trim();
+        if (!t) throw new Error('JSON kosong');
+        return JSON.parse(t);
+      }
+
+      async function loadIndex() {
+        const { backendBaseUrl } = getCreds();
+        if (!backendBaseUrl) throw new Error('Backend URL belum diisi');
+        const data = await api('/api/portfolio/index');
+        const pills = els('indexPills');
+        pills.innerHTML = `
+          <div class="pill"><b>${data.total_photos ?? 0}</b> photos</div>
+          <div class="pill"><b>${data.total_certificates ?? 0}</b> certificates</div>
+        `;
+        return data;
+      }
+
+      async function loadAll() {
+        const { token } = getCreds();
+        // read-only endpoints no token needed.
+        const [experience, skills, socials, photos, certificates] = await Promise.all([
+          api('/api/portfolio/experience'),
+          api('/api/portfolio/skills'),
+          api('/api/portfolio/socials'),
+          api('/api/portfolio/photos'),
+          api('/api/portfolio/certificates'),
+        ]);
+        els('experienceJson').value = JSON.stringify(experience, null, 2);
+        els('skillsJson').value = JSON.stringify(skills, null, 2);
+        els('socialsJson').value = JSON.stringify(socials, null, 2);
+        els('photosJson').value = JSON.stringify(photos, null, 2);
+        els('certificatesJson').value = JSON.stringify(certificates, null, 2);
+        setStatus('Semua data ter-load.');
+      }
+
+      function activateTabs() {
+        document.querySelectorAll('.tab-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            const tabId = btn.dataset.tab;
+            document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+            els(tabId).classList.add('active');
+          });
+        });
+      }
+
+      async function fileToDataUrl(file) {
+        return await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function extFromFileName(name) {
+        const idx = name.lastIndexOf('.');
+        if (idx === -1) return '';
+        return name.slice(idx + 1).toLowerCase();
+      }
+
+      function safeFilenameBase(id) {
+        if (!id) throw new Error('id kosong');
+        // backend allows letters/digits/._-
+        if (!/^[a-zA-Z0-9._-]+$/.test(id)) {
+          throw new Error('id/filename harus hanya berisi [a-zA-Z0-9._-]');
+        }
+        return id;
+      }
+
+      // --- Creds init ---
+      (function init() {
+        els('backendBaseUrl').value = localStorage.getItem('portfolio_backend_base_url') || DEFAULT_BACKEND_BASE;
+        els('adminToken').value = localStorage.getItem('portfolio_admin_token') || '';
+        activateTabs();
+      })();
+
+      els('btnSaveCreds').addEventListener('click', () => {
+        const { backendBaseUrl, token } = getCreds();
+        if (!backendBaseUrl) return setStatus('Backend URL wajib diisi', 'err');
+        localStorage.setItem('portfolio_backend_base_url', backendBaseUrl);
+        if (token) localStorage.setItem('portfolio_admin_token', token);
+        setStatus('Creds tersimpan.');
+      });
+
+      els('btnLoadIndex').addEventListener('click', async () => {
+        try {
+          setStatus('Loading index...');
+          await loadIndex();
+          setStatus('Index OK.');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnLoadAll').addEventListener('click', async () => {
+        try {
+          setStatus('Loading semua data...');
+          await loadAll();
+          await loadIndex();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      // EXPERIENCE replace/clear/upsert
+      els('btnExperienceReplace').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const items = jsonParseOrThrow(els('experienceJson').value);
+          setStatus('Updating experience...');
+          await api('/api/portfolio/experience', {
+            method: 'PUT',
+            token,
+            body: JSON.stringify(items),
+          });
+          setStatus('Experience updated. Tunggu rebuild GitHub Pages 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnExperienceClear').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          setStatus('Clearing experience...');
+          await api('/api/portfolio/experience', { method: 'DELETE', token });
+          setStatus('Experience cleared. Tunggu rebuild 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnExperienceUpsert').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const item = {
+            role: els('expRole').value.trim(),
+            organization: els('expOrg').value.trim(),
+            period: els('expPeriod').value.trim(),
+            duration: els('expDuration').value.trim(),
+            type: els('expType').value.trim(),
+            description: els('expDescription').value.trim(),
+          };
+          if (!item.role || !item.period) throw new Error('role dan period wajib');
+          setStatus('Upserting experience item...');
+          await api('/api/portfolio/experience', {
+            method: 'POST',
+            token,
+            body: JSON.stringify({ item }),
+          });
+          setStatus('Experience upsert OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      // SKILLS
+      els('btnSkillsReplace').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const items = jsonParseOrThrow(els('skillsJson').value);
+          setStatus('Updating skills...');
+          await api('/api/portfolio/skills', { method: 'PUT', token, body: JSON.stringify(items) });
+          setStatus('Skills updated. Tunggu rebuild 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnSkillsClear').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          setStatus('Clearing skills...');
+          await api('/api/portfolio/skills', { method: 'DELETE', token });
+          setStatus('Skills cleared. Tunggu rebuild 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnSkillsUpsert').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const item = {
+            name: els('skName').value.trim(),
+            slug: els('skSlug').value.trim(),
+            icon: els('skIcon').value.trim(),
+          };
+          if (!item.slug) throw new Error('slug wajib');
+          setStatus('Upserting skill...');
+          await api('/api/portfolio/skills', { method: 'POST', token, body: JSON.stringify({ item }) });
+          setStatus('Skill upsert OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      // SOCIALS
+      els('btnSocialsReplace').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const items = jsonParseOrThrow(els('socialsJson').value);
+          setStatus('Updating socials...');
+          await api('/api/portfolio/socials', { method: 'PUT', token, body: JSON.stringify(items) });
+          setStatus('Socials updated. Tunggu rebuild 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnSocialsClear').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          setStatus('Clearing socials...');
+          await api('/api/portfolio/socials', { method: 'DELETE', token });
+          setStatus('Socials cleared. Tunggu rebuild 1–3 menit.', 'ok');
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnSocialsUpsert').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const item = {
+            platform: els('soPlatform').value.trim(),
+            url: els('soUrl').value.trim(),
+            icon: els('soIcon').value.trim(),
+          };
+          if (!item.platform) throw new Error('platform wajib');
+          setStatus('Upserting social...');
+          await api('/api/portfolio/socials', { method: 'POST', token, body: JSON.stringify({ item }) });
+          setStatus('Social upsert OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      // PHOTOS
+      els('btnPhotosUpsert').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const file = els('phFile').files?.[0];
+          if (!file) throw new Error('Pilih file gambar');
+
+          const id = els('phId').value.trim();
+          const caption = els('phCaption').value.trim();
+          const takenAt = els('phTakenAt').value.trim();
+          const filenameInput = els('phFilename').value.trim();
+          const auto = els('phAutoFilename').value === 'yes';
+
+          safeFilenameBase(id);
+          const ext = extFromFileName(file.name) || 'jpg';
+          const filename = auto ? `${id}_verified.${ext}` : filenameInput;
+          if (!filename) throw new Error('filename wajib');
+          if (!/^[a-zA-Z0-9._-]+$/.test(filename)) throw new Error('filename tidak valid (harus tanpa / dan hanya [a-zA-Z0-9._-])');
+
+          setStatus('Mengupload photo... (bisa agak lama)');
+          const imageBase64 = await fileToDataUrl(file);
+          await api('/api/portfolio/photos/upsert', {
+            method: 'POST',
+            token,
+            body: JSON.stringify({
+              photo: { id, filename, caption, takenAt },
+              imageBase64,
+            }),
+          });
+
+          setStatus('Photo upsert OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+          await loadIndex();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnPhotosDelete').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const photoId = els('phDeleteId').value.trim();
+          if (!photoId) throw new Error('photo id wajib');
+          const delImg = els('phDeleteImage').value === 'true';
+          setStatus('Menghapus photo...');
+          await api(`/api/portfolio/photos/${encodeURIComponent(photoId)}?deleteImage=${delImg}`, {
+            method: 'DELETE',
+            token,
+          });
+          setStatus('Photo delete OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+          await loadIndex();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      // CERTIFICATES
+      els('btnCertificatesUpsert').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const file = els('ceFile').files?.[0];
+          if (!file) throw new Error('Pilih file gambar');
+
+          const id = els('ceId').value.trim();
+          safeFilenameBase(id);
+          const title = els('ceTitle').value.trim();
+          const issuer = els('ceIssuer').value.trim();
+          const date = els('ceDate').value.trim();
+          const description = els('ceDescription').value.trim();
+          const category = els('ceCategory').value.trim();
+          const filenameInput = els('ceFilename').value.trim();
+          const auto = els('ceAutoFilename').value === 'yes';
+
+          const ext = extFromFileName(file.name) || 'jpg';
+          const filename = auto ? `${id}_verified.${ext}` : filenameInput;
+          if (!filename) throw new Error('filename wajib');
+          if (!/^[a-zA-Z0-9._-]+$/.test(filename)) throw new Error('filename tidak valid');
+
+          setStatus('Mengupload certificate... (bisa agak lama)');
+          const imageBase64 = await fileToDataUrl(file);
+          await api('/api/portfolio/certificates/upsert', {
+            method: 'POST',
+            token,
+            body: JSON.stringify({
+              certificate: { id, filename, title, issuer, date, description, category },
+              imageBase64,
+            }),
+          });
+          setStatus('Certificate upsert OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+          await loadIndex();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+
+      els('btnCertificatesDelete').addEventListener('click', async () => {
+        try {
+          const { token } = getCreds();
+          if (!token) return setStatus('Admin token dibutuhkan untuk update', 'err');
+          const certId = els('ceDeleteId').value.trim();
+          if (!certId) throw new Error('certificate id wajib');
+          const delImg = els('ceDeleteImage').value === 'true';
+          setStatus('Menghapus certificate...');
+          await api(`/api/portfolio/certificates/${encodeURIComponent(certId)}?deleteImage=${delImg}`, {
+            method: 'DELETE',
+            token,
+          });
+          setStatus('Certificate delete OK. Tunggu rebuild 1–3 menit.', 'ok');
+          await loadAll();
+          await loadIndex();
+        } catch (e) {
+          setStatus(String(e.message || e), 'err');
+        }
+      });
+    </script>
+  </body>
+</html>
+

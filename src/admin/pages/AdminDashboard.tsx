@@ -99,14 +99,14 @@ export default function AdminDashboard() {
   }) => {
     try {
       if (section === 'certificates' && payload.certificate) {
-        const ok = await certificates.upsert({ certificate: payload.certificate, imageBase64: payload.imageBase64 })
-        if (!ok) return pushToast('err', certificates.error || 'Update failed')
+        const res = await certificates.upsert({ certificate: payload.certificate, imageBase64: payload.imageBase64 })
+        if (!res.ok) return pushToast('err', res.error || certificates.error || 'Update failed')
         pushToast('ok', formMode === 'create' ? 'Certificate created' : 'Certificate updated')
       }
 
       if (section === 'photos' && payload.photo) {
-        const ok = await photos.upsert({ photo: payload.photo, imageBase64: payload.imageBase64 })
-        if (!ok) return pushToast('err', photos.error || 'Update failed')
+        const res = await photos.upsert({ photo: payload.photo, imageBase64: payload.imageBase64 })
+        if (!res.ok) return pushToast('err', res.error || photos.error || 'Update failed')
         pushToast('ok', formMode === 'create' ? 'Photo created' : 'Photo updated')
       }
 
@@ -159,13 +159,13 @@ export default function AdminDashboard() {
     try {
       if (section === 'certificates') {
         const item = deleteTarget as Certificate
-        const ok = await certificates.remove(item.id, deleteImage)
-        if (!ok) return pushToast('err', certificates.error || 'Delete failed')
+        const res = await certificates.remove(item.id, deleteImage)
+        if (!res.ok) return pushToast('err', res.error || certificates.error || 'Delete failed')
         pushToast('ok', 'Certificate deleted')
       } else if (section === 'photos') {
         const item = deleteTarget as Photo
-        const ok = await photos.remove(item.id, deleteImage)
-        if (!ok) return pushToast('err', photos.error || 'Delete failed')
+        const res = await photos.remove(item.id, deleteImage)
+        if (!res.ok) return pushToast('err', res.error || photos.error || 'Delete failed')
         pushToast('ok', 'Photo deleted')
       } else if (section === 'experience') {
         const item = deleteTarget as Experience

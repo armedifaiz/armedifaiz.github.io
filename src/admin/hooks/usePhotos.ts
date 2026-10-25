@@ -49,11 +49,12 @@ export function usePhotos() {
             return next
           })
         }
-        return true
+        return { ok: true as const }
       } catch (e) {
         setData(previous)
-        setError((e as Error).message)
-        return false
+        const msg = (e as Error).message
+        setError(msg)
+        return { ok: false as const, error: msg }
       }
     },
     [data],
@@ -65,11 +66,12 @@ export function usePhotos() {
       setData((cur) => cur.filter((x) => x.id !== id))
       try {
         await deletePhoto({ id, deleteImage })
-        return true
+        return { ok: true as const }
       } catch (e) {
         setData(previous)
-        setError((e as Error).message)
-        return false
+        const msg = (e as Error).message
+        setError(msg)
+        return { ok: false as const, error: msg }
       }
     },
     [data],

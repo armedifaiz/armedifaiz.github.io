@@ -236,7 +236,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-base-950 text-white">
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar section={section} onSectionChange={setSection} />
 
         <main className="flex-1 p-5">
@@ -244,18 +244,6 @@ export default function AdminDashboard() {
             <div>
               <div className="text-xl font-semibold">{sectionLabel} Manager</div>
               <div className="text-xs text-white/60">Instant list update (optimistic + rollback)</div>
-            </div>
-
-            <div>
-              <button
-                onClick={() => {
-                  setDeleteImage(false)
-                  openCreate()
-                }}
-                className="rounded-xl border border-accent/50 bg-accent/15 px-4 py-2 text-sm font-semibold text-accent-200 hover:bg-accent/25"
-              >
-                Add
-              </button>
             </div>
           </div>
 

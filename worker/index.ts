@@ -11,6 +11,13 @@ export default {
 
     // Proxy API calls to the CRUD worker.
     if (url.pathname.startsWith('/api/portfolio')) {
+      const debug = url.searchParams.get('debug') === '1'
+      if (debug) {
+        return new Response(JSON.stringify({ path: url.pathname, debug: true, match: true }), {
+          headers: { 'content-type': 'application/json; charset=utf-8' },
+        })
+      }
+
       const base = env.PORTFOLIO_BACKEND_BASE_URL || 'https://portfolio-backend.armedifaiz.workers.dev'
       return fetch(`${base}${url.pathname}${url.search}`, {
         method: request.method,

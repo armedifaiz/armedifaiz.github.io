@@ -17,7 +17,12 @@ async function readJsonOrText(res: Response): Promise<unknown> {
 }
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(path, init)
+  const finalInit: RequestInit = {
+    credentials: 'include',
+    ...(init || {}),
+  }
+
+  const res = await fetch(path, finalInit)
   const payload = await readJsonOrText(res)
   if (!res.ok) {
     let msg =

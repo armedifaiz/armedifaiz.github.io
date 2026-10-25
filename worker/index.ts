@@ -21,7 +21,15 @@ export default {
       // Forward only a safe subset to avoid sending problematic headers like `host`.
       for (const [key, value] of request.headers.entries()) {
         const lower = key.toLowerCase()
-        if (lower === 'authorization' || lower === 'content-type' || lower === 'accept') {
+        if (
+          lower === 'authorization' ||
+          lower === 'content-type' ||
+          lower === 'accept' ||
+          lower === 'user-agent' ||
+          lower === 'origin' ||
+          lower === 'referer' ||
+          lower === 'accept-language'
+        ) {
           forwardedHeaders.set(key, value)
         } else if (lower.startsWith('cf-access-')) {
           forwardedHeaders.set(key, value)

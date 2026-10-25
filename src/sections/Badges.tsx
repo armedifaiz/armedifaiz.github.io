@@ -2,12 +2,16 @@ import { useEffect, useRef } from 'react'
 import SectionTitle from '../components/common/SectionTitle'
 import BadgeCard from '../components/cards/BadgeCard'
 import credlyBadges from '../data/credly-badges.json'
+import manualBadges from '../data/manual-badges.json'
 import type { CredlyBadge } from '../types/credly-badge'
 import { badges as badgesConfig } from '../data/site'
 
 export default function Badges() {
   const data = credlyBadges as { fetched_at: string; total: number; badges: CredlyBadge[] }
-  const originals = data.badges
+  const originalsMap = new Map<string, CredlyBadge>()
+  for (const b of data.badges) originalsMap.set(b.id, b)
+  for (const b of (manualBadges as CredlyBadge[])) originalsMap.set(b.id, b)
+  const originals = Array.from(originalsMap.values())
   const items = [...originals, ...originals, ...originals]
   const trackRef = useRef<HTMLDivElement>(null)
 

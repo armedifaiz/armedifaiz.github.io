@@ -89,6 +89,19 @@ async function main() {
     console.error(`  -> ${name} saved`);
   }
 
+  // --- Manual digital badges ---
+  // Powers the admin "Badges" section.
+  console.error('Fetching badges.json (manual digital badges)...');
+  try {
+    const badges = await fetchJson('badges.json');
+    write(join(OUT, 'src', 'data', 'manual-badges.json'), JSON.stringify(badges, null, 2));
+    console.error(`  -> badges.json saved (${Array.isArray(badges) ? badges.length : 0} items)`);
+  } catch {
+    // badges.json might not exist yet.
+    write(join(OUT, 'src', 'data', 'manual-badges.json'), JSON.stringify([], null, 2));
+    console.error('  -> badges.json missing; created empty manual-badges.json');
+  }
+
   console.error('\nDone.');
 }
 

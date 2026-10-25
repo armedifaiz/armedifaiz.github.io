@@ -48,6 +48,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create admin SPA entrypoints (/admin)
+        run: |
+          mkdir -p ./dist/admin
+          cp ./dist/index.html ./dist/admin/index.html
+          # Also support /admin.html just in case
+          cp ./dist/index.html ./dist/admin.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

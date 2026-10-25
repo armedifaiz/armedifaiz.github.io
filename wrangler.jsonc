@@ -5,8 +5,15 @@
   "compatibility_date": "2026-10-19",
   "assets": {
     "directory": "./dist",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "none",
+    "not_found_handling": "single-page-application"
   },
+  "routes": [
+    {
+      "pattern": "portfolio.faizarmedi.com/*",
+      "zone_name": "faizarmedi.com"
+    }
+  ],
   "observability": {
     "enabled": true
   },

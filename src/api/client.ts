@@ -25,6 +25,23 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     ...(init || {}),
   }
 
+  // Admin calls: attach Basic auth from localStorage if available.
+  // Stored value: localStorage["portfolio_admin_basic_b64"] = base64(username:password)
+  try {
+    if (typeof window !== 'undefined') {
+      const b64 = window.localStorage.getItem('portfolio_admin_basic_b64')
+      if (b64) {
+        const headers = new Headers(finalInit.headers)
+        if (!headers.has('Authorization')) {
+          headers.set('Authorization', `Basic ${b64}`)
+        }
+        finalInit.headers = headers
+      }
+    }
+  } catch {
+    // ignore storage failures (private mode, etc.)
+  }
+
   const res = await fetch(path, finalInit)
   const payload = await readJsonOrText(res)
   if (!res.ok) {

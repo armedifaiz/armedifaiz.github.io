@@ -34,49 +34,29 @@ type FormInitial = Certificate | Photo | Experience | Skill | Social | CredlyBad
 export default function AdminDashboard() {
   const [section, setSection] = useState<AdminSection>('certificates')
 
-  // Cloudflare Access on the backend worker often relies on cookies that
-  // must be established for the backend hostname.
-  // Use an invisible iframe to trigger the auth redirect flow for the backend
-  // without blocking our main JS fetches via CORS.
+  const [authReady, setAuthReady] = useState<boolean>(() => {
+    try {
+      return typeof window !== 'undefined' && !!window.localStorage.getItem('portfolio_admin_basic_b64')
+    } catch {
+      return false
+    }
+  })
+
+  // Simple admin login: store Basic auth credential in localStorage.
+  // This replaces the previous Cloudflare Access iframe/cookie flow.
   useEffect(() => {
-    const flagKey = 'portfolio_backend_access_cookie_ready'
     if (typeof window === 'undefined') return
-    if (window.sessionStorage.getItem(flagKey) === '1') return
+    if (authReady) return
 
-    const iframeId = 'portfolio-backend-auth-iframe'
-    if (document.getElementById(iframeId)) return
+    const username = window.prompt('Portfolio Admin Username', 'admin')
+    if (username === null) return
+    const password = window.prompt('Portfolio Admin Password', '')
+    if (password === null) return
 
-    const backendHealth = 'https://portfolio-backend.armedifaiz.workers.dev/api/portfolio/health'
-    const iframe = document.createElement('iframe')
-    iframe.id = iframeId
-    iframe.style.display = 'none'
-    iframe.width = '0'
-    iframe.height = '0'
-    iframe.sandbox.add('allow-scripts', 'allow-same-origin')
-
-    let done = false
-    const markDone = () => {
-      if (done) return
-      done = true
-      window.sessionStorage.setItem(flagKey, '1')
-      iframe.remove()
-    }
-
-    iframe.onload = () => {
-      // If we reached a non-login page, the request is authenticated.
-      markDone()
-    }
-    iframe.onerror = () => {
-      // Still allow retry later; we just don't mark done.
-      iframe.remove()
-    }
-
-    document.body.appendChild(iframe)
-    iframe.src = backendHealth
-
-    // Safety timeout.
-    window.setTimeout(() => markDone(), 8000)
-  }, [])
+    const b64 = window.btoa(`${username}:${password}`)
+    window.localStorage.setItem('portfolio_admin_basic_b64', b64)
+    setAuthReady(true)
+  }, [authReady])
 
   const certificates = useCertificates()
   const photos = usePhotos()
@@ -114,6 +94,19 @@ export default function AdminDashboard() {
             : section === 'socials'
               ? socials.loading
               : badges.loading
+
+  if (!authReady) {
+    return (
+      <div className="min-h-screen bg-base-950 text-white flex items-center justify-center p-8">
+        <div className="max-w-md rounded-xl border border-white/10 bg-white/5 p-6">
+          <div className="text-lg font-semibold">Portfolio Admin Login Required</div>
+          <div className="mt-2 text-sm text-white/70">
+            Please refresh and enter the admin username/password when prompted.
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const closeForm = () => {
     setFormOpen(false)

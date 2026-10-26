@@ -1,24 +1,24 @@
 {
-  "_App-7byGwrpn.js": {
-    "file": "assets/App-7byGwrpn.js",
+  "_App-DvMfqIAW.js": {
+    "file": "assets/App-DvMfqIAW.js",
     "name": "App"
   },
   "resources/spa/inertia-main.tsx": {
-    "file": "assets/inertia-main-DL3mGy6c.js",
+    "file": "assets/inertia-main-DOpR1h_n.js",
     "name": "inertia-main",
     "src": "resources/spa/inertia-main.tsx",
     "isEntry": true,
     "imports": [
-      "_App-7byGwrpn.js"
+      "_App-DvMfqIAW.js"
     ]
   },
   "resources/spa/main.tsx": {
-    "file": "assets/main-Br58Yh48.js",
+    "file": "assets/main-CTQw7HWF.js",
     "name": "main",
     "src": "resources/spa/main.tsx",
     "isEntry": true,
     "imports": [
-      "_App-7byGwrpn.js"
+      "_App-DvMfqIAW.js"
     ],
     "css": [
       "assets/main-Cz4-zsTA.css"

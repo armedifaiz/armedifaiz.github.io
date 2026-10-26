@@ -1,9 +1,25 @@
 {
+  "_App-EhT3qCuM.js": {
+    "file": "assets/App-EhT3qCuM.js",
+    "name": "App"
+  },
+  "resources/spa/inertia-main.tsx": {
+    "file": "assets/inertia-main-NfChzL9Z.js",
+    "name": "inertia-main",
+    "src": "resources/spa/inertia-main.tsx",
+    "isEntry": true,
+    "imports": [
+      "_App-EhT3qCuM.js"
+    ]
+  },
   "resources/spa/main.tsx": {
-    "file": "assets/main-BVQaAFat.js",
+    "file": "assets/main-CMKSJ0Ku.js",
     "name": "main",
     "src": "resources/spa/main.tsx",
     "isEntry": true,
+    "imports": [
+      "_App-EhT3qCuM.js"
+    ],
     "css": [
       "assets/main-Cz4-zsTA.css"
     ]
